@@ -23,7 +23,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'hapus') {
 }
 
 
-$siswaList = getPerguruanTinggiFromFile();
+$perguruanTinggiList = getPerguruanTinggiFromFile();
 ?>
 
 <!DOCTYPE html>
@@ -36,24 +36,24 @@ $siswaList = getPerguruanTinggiFromFile();
     <!-- Tambahkan form untuk menambah data siswa -->
     <h2>Tambah Data Perguruan Tinggi</h2>
     <form method="post">
-        <label for="nis">Nomer Induk Perguruan Tinggi:</label>
+        <label for="nip">Nomer Induk Perguruan Tinggi:</label>
         <input type="text" id="nip" name="nip" required>
         <br>
-        <label for="nama">Nama Perguruan Tinggi:</label>
+        <label for="nama_perguruan">Nama Perguruan Tinggi:</label>
         <input type="text" id="nama_perguruan" name="nama_perguruan" required>
         <br>
         <input type="submit" name="add_perguruan" value="Tambah Data Perguruan Tinggi">
     </form>
 
     <!-- Tampilkan daftar siswa -->
-    <h2>Daftar Siswa</h2>
+    <h2>Daftar Perguruan Tinggi</h2>
     <ul>
-        <?php foreach ($siswaList as $siswa): ?>
+        <?php foreach ($perguruanTinggiList as $perguruanTinggi): ?>
             <li>
-                <?php echo $siswa['nis'] . ' - ' . $siswa['nama']; ?>
-                (Tanggal dan Jam Disimpan: <?php echo $siswa['tanggal_jam']; ?>)
-                <a href="?action=hapus&nis=<?php echo $siswa['nis']; ?>">Hapus</a>
-                <a href="edit_siswa.php?nis=<?php echo $siswa['nis']; ?>">Edit</a>
+                <?php echo $perguruanTinggi['nip'] . ' - ' . $perguruanTinggi['nama_perguruan']; ?>
+                (Tanggal dan Jam Disimpan: <?php echo $perguruanTinggi['tanggal_jam']; ?>)
+                <a href="?action=hapus&nip=<?php echo $perguruanTinggi['nip']; ?>">Hapus</a>
+                <a href="edit_PerguruanTinggi.php?nip=<?php echo $perguruanTinggi['nip']; ?>">Edit</a>
             </li>
         <?php endforeach; ?>
     </ul>

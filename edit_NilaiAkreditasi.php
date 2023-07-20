@@ -6,18 +6,18 @@ if (isset($_GET['nip'])) {
     $nilaiAkhir = getNilaiAkreditasiByNIP($nip);
 
     if (!$nilaiAkhir) {
-        header('Location: kelola_nilai.php');
+        header('Location: kelola_NilaiAkreditasi.php');
         exit;
     }
 } else {
-    header('Location: kelola_nilai.php');
+    header('Location: kelola_NilaiAkreditasi.php');
     exit;
 }
 
-if (isset($_POST['edit_nilai'])) {
+if (isset($_POST['edit_NilaiAkreditasi'])) {
     $nilai_angka = $_POST['nilai'];
     editNilaiAkreditasiByNIP($nip, $nilai_angka);
-    header('Location: kelola_nilai.php');
+    header('Location: kelola_NilaiAkreditasi.php');
     exit;
 }
 ?>
@@ -36,9 +36,9 @@ if (isset($_POST['edit_nilai'])) {
         <label for="nilai">Nilai Akhir Angka:</label>
         <input type="number" id="nilai" name="nilai" value="<?php echo $nilaiAkhir['nilai_angka']; ?>" required>
         <br>
-        <input type="submit" name="edit_nilai" value="Simpan Perubahan">
+        <input type="submit" name="edit_NilaiAkreditasi" value="Simpan Perubahan">
     </form>
     <br>
-    <a href="kelola_nilai.php">Kembali ke Kelola Nilai Akhir</a>
+    <a href="kelola_NilaiAkreditasi.php">Kembali ke Kelola Nilai Akhir</a>
 </body>
 </html>

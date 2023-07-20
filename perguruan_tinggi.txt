@@ -1,0 +1,1 @@
+a:2:{i:0;a:3:{s:3:"nip";s:6:"123123";s:14:"nama_perguruan";s:3:"Tes";s:11:"tanggal_jam";s:19:"2023-07-20 01:50:59";}i:1;a:3:{s:3:"nip";s:6:"123123";s:14:"nama_perguruan";s:3:"Tes";s:11:"tanggal_jam";s:19:"2023-07-20 01:52:06";}}

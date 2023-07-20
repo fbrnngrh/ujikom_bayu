@@ -68,7 +68,7 @@ $nilaiAkhirList = getNilaiAkreditasiFromFile();
                 <td><?php echo $nilaiAkhir['tanggal_jam']; ?></td>
                 <td>
                     <a href="?action=hapus&nip=<?php echo $nilaiAkhir['nip']; ?>">Hapus</a>
-                    <a href="edit_nilai.php?nip=<?php echo $nilaiAkhir['nip']; ?>">Edit</a>
+                    <a href="edit_NilaiAkreditasi.php?nip=<?php echo $nilaiAkhir['nip']; ?>">Edit</a>
                 </td>
             </tr>
         <?php endforeach; ?>
