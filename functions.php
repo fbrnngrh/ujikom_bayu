@@ -93,20 +93,13 @@ function tambahPerguruanTinggi($nomer_induk, $nama, $nilai_akreditasi) {
 }
 
 // Fungsi untuk mencari data perguruan tinggi berdasarkan nama
-function searchPerguruanTinggi($keyword)
-{
-    $data = readDataFromFile('data_perguruan_tinggi.txt');
-    $result = array();
-
-    foreach ($data as $perguruanTinggi) {
-        if (stripos($perguruanTinggi['nama'], $keyword) !== false) {
-            $result[] = $perguruanTinggi;
-        }
-    }
-
-    return $result;
+function cariPerguruanTinggi($nama) {
+    $data = getAllPerguruanTinggi();
+    $filteredData = array_filter($data, function ($item) use ($nama) {
+        return strpos(strtolower($item['nama']), strtolower($nama)) !== false;
+    });
+    return $filteredData;
 }
-
 
 // Fungsi untuk menghapus data perguruan tinggi berdasarkan nomor induk
 function hapusPerguruanTinggi($nomer_induk) {

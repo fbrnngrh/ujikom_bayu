@@ -92,7 +92,7 @@
             <?php
             if (isset($_GET['search'])) {
                 $search = $_GET['search'];
-                $dataPerguruanTinggi = searchPerguruanTinggi($search);
+                $dataPerguruanTinggi = cariPerguruanTinggi($search);
 
                 if (empty($dataPerguruanTinggi)) {
                     echo "<p>Tidak ditemukan hasil untuk kata kunci pencarian '$search'.</p>";
