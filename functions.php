@@ -66,13 +66,15 @@ function getNilaiAkreditasiByNomerInduk($nomer_induk) {
 
 // Fungsi untuk mendapatkan semua data perguruan tinggi
 function getAllPerguruanTinggi() {
-    return readDataFromFile('perguruan_tinggi.txt');
+    // tampilkan data perguruan tinggi dalam urutan descending berdasarkan nilai akreditasi
+    $data = readDataFromFile('perguruan_tinggi.txt');
+    usort($data, function ($item1, $item2) {
+        return $item2['nilai_akreditasi'] <=> $item1['nilai_akreditasi'];
+    });
+
+    return $data;
 }
 
-// Fungsi untuk mendapatkan semua data nilai akreditasi
-function getAllNilaiAkreditasi() {
-    return readDataFromFile('nilai_akreditasi.txt');
-}
 
 // Fungsi untuk menambah data perguruan tinggi
 function tambahPerguruanTinggi($nomer_induk, $nama, $nilai_akreditasi) {
@@ -90,18 +92,7 @@ function tambahPerguruanTinggi($nomer_induk, $nama, $nilai_akreditasi) {
 }
 
 // Fungsi untuk menambah data nilai akreditasi
-function tambahNilaiAkreditasi($nomer_induk, $nilai_akreditasi) {
-    $data = getAllNilaiAkreditasi();
-    $peringkat_akreditasi = getPeringkatAkreditasi($nilai_akreditasi);
-    $tanggal_jam = date('Y-m-d H:i:s');
-    $data[] = array(
-        'nomer_induk' => $nomer_induk,
-        'nilai_akreditasi' => $nilai_akreditasi,
-        'peringkat_akreditasi' => $peringkat_akreditasi,
-        'tanggal_jam' => $tanggal_jam
-    );
-    return writeDataToFile('nilai_akreditasi.txt', $data);
-}
+
 
 // Fungsi untuk menghapus data perguruan tinggi berdasarkan nomor induk
 function hapusPerguruanTinggi($nomer_induk) {
@@ -113,13 +104,7 @@ function hapusPerguruanTinggi($nomer_induk) {
 }
 
 // Fungsi untuk menghapus data nilai akreditasi berdasarkan nomor induk
-function hapusNilaiAkreditasi($nomer_induk) {
-    $data = getAllNilaiAkreditasi();
-    $filteredData = array_filter($data, function ($item) use ($nomer_induk) {
-        return $item['nomer_induk'] !== $nomer_induk;
-    });
-    return writeDataToFile('nilai_akreditasi.txt', $filteredData);
-}
+
 
 // Fungsi untuk memperbarui data perguruan tinggi berdasarkan nomor induk
 function updatePerguruanTinggi($nomer_induk, $nama, $nilai_akreditasi) {
@@ -137,17 +122,6 @@ function updatePerguruanTinggi($nomer_induk, $nama, $nilai_akreditasi) {
 }
 
 // Fungsi untuk memperbarui data nilai akreditasi berdasarkan nomor induk
-function updateNilaiAkreditasi($nomer_induk, $nilai_akreditasi) {
-    $data = getAllNilaiAkreditasi();
-    $updatedData = array_map(function ($item) use ($nomer_induk, $nilai_akreditasi) {
-        if ($item['nomer_induk'] === $nomer_induk) {
-            $item['nilai_akreditasi'] = $nilai_akreditasi;
-            $item['peringkat_akreditasi'] = getPeringkatAkreditasi($nilai_akreditasi);
-            $item['tanggal_jam'] = date('Y-m-d H:i:s');
-        }
-        return $item;
-    }, $data);
-    return writeDataToFile('nilai_akreditasi.txt', $updatedData);
-}
+
 
 ?>

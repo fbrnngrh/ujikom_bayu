@@ -1,1 +1,1 @@
-{"nomer_induk":"123","nama":"politeknik negeri tanah laut","nilai_akreditasi":"380","peringkat_akreditasi":"A","tanggal_jam":"2023-07-20 03:26:03"}
+{"nomer_induk":"123","nama":"politeknik negeri tanah laut","nilai_akreditasi":"400","peringkat_akreditasi":"A","tanggal_jam":"2023-07-20 03:59:23"}

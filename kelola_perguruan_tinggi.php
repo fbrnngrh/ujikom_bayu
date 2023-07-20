@@ -13,7 +13,6 @@
             </ul>
         </nav>
     </header>
-
     <main>
         <div class="container">
             <h1>Kelola Data Perguruan Tinggi</h1>
