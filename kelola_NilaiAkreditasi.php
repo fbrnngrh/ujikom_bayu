@@ -3,7 +3,7 @@ require 'functions.php';
 
 // Memproses data ketika tombol "Simpan Nilai" ditekan
 if (isset($_POST['add_nilai'])) {
-    $nip = $_POST['nis'];
+    $nip = $_POST['nip'];
     $nilai_angka = $_POST['nilai'];
 
     $nilai_huruf = getNilaiHuruf($nilai_angka);
@@ -11,7 +11,7 @@ if (isset($_POST['add_nilai'])) {
     $nilaiAkreditasiList = getNilaiAkreditasiFromFile();
 
     $nilaiAkreditasiList[] = [
-        'niP' => $niP,
+        'nip' => $nip,
         'nilai_angka' => $nilai_angka,
         'nilai_huruf' => $nilai_huruf,
         'tanggal_jam' => date('Y-m-d H:i:s')
@@ -62,7 +62,7 @@ $nilaiAkhirList = getNilaiAkreditasiFromFile();
         </tr>
         <?php foreach ($nilaiAkhirList as $nilaiAkhir): ?>
             <tr>
-                <td><?php echo $nilaiAkhir['niP']; ?></td>
+                <td><?php echo $nilaiAkhir['nip']; ?></td>
                 <td><?php echo $nilaiAkhir['nilai_angka']; ?></td>
                 <td><?php echo $nilaiAkhir['nilai_huruf']; ?></td>
                 <td><?php echo $nilaiAkhir['tanggal_jam']; ?></td>
