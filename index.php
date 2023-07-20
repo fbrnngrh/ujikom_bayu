@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Untuk Halaman Beranda -->
     <title>Beranda</title>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

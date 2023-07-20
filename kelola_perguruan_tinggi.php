@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Untuk Halaman Mengelola Data Perguruan Tinggi -->
     <title>Kelola Data Perguruan Tinggi</title>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
