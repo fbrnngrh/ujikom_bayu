@@ -1,1 +1,7 @@
 {"nomer_induk":"123","nama":"politeknik negeri tanah laut","nilai_akreditasi":"400","peringkat_akreditasi":"A","tanggal_jam":"2023-07-20 03:59:23"}
+{"nomer_induk":"12411213","nama":"Politelknik Negeri Batam","nilai_akreditasi":"370","peringkat_akreditasi":"A","tanggal_jam":"2023-07-20 04:02:48"}
+{"nomer_induk":"1213123","nama":"Politelknik Negeri Malang","nilai_akreditasi":"350","peringkat_akreditasi":"B","tanggal_jam":"2023-07-20 04:03:48"}
+{"nomer_induk":"1231231231","nama":"Politelknik Negeri Bandung","nilai_akreditasi":"320","peringkat_akreditasi":"B","tanggal_jam":"2023-07-20 04:07:44"}
+{"nomer_induk":"112121","nama":"Politelknik Negeri Surabaya","nilai_akreditasi":"300","peringkat_akreditasi":"C","tanggal_jam":"2023-07-20 04:02:16"}
+{"nomer_induk":"123412","nama":"Politelknik Negeri Jakarta","nilai_akreditasi":"200","peringkat_akreditasi":"C","tanggal_jam":"2023-07-20 04:02:32"}
+{"nomer_induk":"123143123123","nama":"politeknik negeri Bali","nilai_akreditasi":"325","peringkat_akreditasi":"B","tanggal_jam":"2023-07-20 04:08:22"}
