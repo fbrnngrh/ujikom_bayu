@@ -1,9 +1,9 @@
 <?php
 require 'functions.php';
 
-if (isset($_GET['nis'])) {
-    $nis = $_GET['nis'];
-    $nilaiAkhir = getNilaiAkhirByNIS($nis);
+if (isset($_GET['nip'])) {
+    $nip = $_GET['nip'];
+    $nilaiAkhir = getNilaiAkreditasiByNIP($nip);
 
     if (!$nilaiAkhir) {
         header('Location: kelola_nilai.php');
@@ -16,7 +16,7 @@ if (isset($_GET['nis'])) {
 
 if (isset($_POST['edit_nilai'])) {
     $nilai_angka = $_POST['nilai'];
-    editNilaiAkhirByNIS($nis, $nilai_angka);
+    editNilaiAkreditasiByNIP($nip, $nilai_angka);
     header('Location: kelola_nilai.php');
     exit;
 }
@@ -30,8 +30,8 @@ if (isset($_POST['edit_nilai'])) {
 <body>
     <h1>Edit Data Nilai Akhir</h1>
     <form method="post">
-        <label for="nis">Nomer Induk Siswa:</label>
-        <input type="text" id="nis" name="nis" value="<?php echo $nilaiAkhir['nis']; ?>" readonly>
+        <label for="nip">Nomer Induk Perguruan Tinggi:</label>
+        <input type="text" id="nip" name="nip" value="<?php echo $nilaiAkhir['nip[']; ?>" readonly>
         <br>
         <label for="nilai">Nilai Akhir Angka:</label>
         <input type="number" id="nilai" name="nilai" value="<?php echo $nilaiAkhir['nilai_angka']; ?>" required>

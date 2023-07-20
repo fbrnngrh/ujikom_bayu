@@ -1,11 +1,11 @@
 <?php
 require 'functions.php';
 
-if (isset($_GET['nis'])) {
-    $nis = $_GET['nis'];
-    $siswa = getSiswaByNIS($nis);
+if (isset($_GET['nip'])) {
+    $nis = $_GET['nip'];
+    $perguruan_tinggi = getPerguruanTinggiByNIP($nip);
 
-    if (!$siswa) {
+    if (!$perguruan_tinggi) {
         header('Location: kelola_siswa.php');
         exit;
     }

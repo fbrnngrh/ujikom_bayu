@@ -8,26 +8,27 @@ if (isset($_POST['add_nilai'])) {
 
     $nilai_huruf = getNilaiHuruf($nilai_angka);
 
-    $nilaiAkhirList = getNilaiAkhirFromFile();
-    $nilaiAkhirList[] = [
-        'nis' => $nis,
+    $nilaiAkreditasiList = getNilaiAkreditasiFromFile();
+
+    $nilaiAkreditasiList[] = [
+        'niP' => $niP,
         'nilai_angka' => $nilai_angka,
         'nilai_huruf' => $nilai_huruf,
         'tanggal_jam' => date('Y-m-d H:i:s')
     ];
 
-    saveNilaiAkhirToFile($nilaiAkhirList);
+    saveNilaiAkreditasiToFile($nilaiAkreditasiList);
 }
 
 // Memproses data ketika tombol "Hapus Data Nilai" ditekan
 if (isset($_GET['action']) && $_GET['action'] === 'hapus') {
-    $nisToDelete = $_GET['nis'];
-    hapusNilaiAkhirByNIS($nisToDelete);
+    $nipToDelete = $_GET['nip'];
+    hapusNilaiAkreditasiByNIP($nipToDelete);
 }
 
 
 
-$nilaiAkhirList = getNilaiAkhirFromFile();
+$nilaiAkhirList = getNilaiAkreditasiFromFile();
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +41,7 @@ $nilaiAkhirList = getNilaiAkhirFromFile();
     <!-- Tambahkan form untuk menambah data nilai akhir -->
     <h2>Tambah Data Nilai Akreditasi</h2>
     <form method="post">
-        <label for="nis">Nomer Induk Perguruan Tinggi</label>
+        <label for="niP">Nomer Induk Perguruan Tinggi</label>
         <input type="text" id="nip" name="nip" required>
         <br>
         <label for="nilai">Nilai Akreditasi:</label>
@@ -61,13 +62,13 @@ $nilaiAkhirList = getNilaiAkhirFromFile();
         </tr>
         <?php foreach ($nilaiAkhirList as $nilaiAkhir): ?>
             <tr>
-                <td><?php echo $nilaiAkhir['nis']; ?></td>
+                <td><?php echo $nilaiAkhir['niP']; ?></td>
                 <td><?php echo $nilaiAkhir['nilai_angka']; ?></td>
                 <td><?php echo $nilaiAkhir['nilai_huruf']; ?></td>
                 <td><?php echo $nilaiAkhir['tanggal_jam']; ?></td>
                 <td>
-                    <a href="?action=hapus&nis=<?php echo $nilaiAkhir['nis']; ?>">Hapus</a>
-                    <a href="edit_nilai.php?nis=<?php echo $nilaiAkhir['nis']; ?>">Edit</a>
+                    <a href="?action=hapus&nip=<?php echo $nilaiAkhir['nip']; ?>">Hapus</a>
+                    <a href="edit_nilai.php?nip=<?php echo $nilaiAkhir['nip']; ?>">Edit</a>
                 </td>
             </tr>
         <?php endforeach; ?>
