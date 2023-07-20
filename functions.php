@@ -15,6 +15,7 @@ function readDataFromFile($filename) {
     return $data;
 }
 
+
 // Fungsi untuk menulis data ke file
 function writeDataToFile($filename, $data) {
     $file = fopen($filename, 'w');
@@ -91,7 +92,20 @@ function tambahPerguruanTinggi($nomer_induk, $nama, $nilai_akreditasi) {
     return writeDataToFile('perguruan_tinggi.txt', $data);
 }
 
-// Fungsi untuk menambah data nilai akreditasi
+// Fungsi untuk mencari data perguruan tinggi berdasarkan nama
+function searchPerguruanTinggi($keyword)
+{
+    $data = readDataFromFile('data_perguruan_tinggi.txt');
+    $result = array();
+
+    foreach ($data as $perguruanTinggi) {
+        if (stripos($perguruanTinggi['nama'], $keyword) !== false) {
+            $result[] = $perguruanTinggi;
+        }
+    }
+
+    return $result;
+}
 
 
 // Fungsi untuk menghapus data perguruan tinggi berdasarkan nomor induk

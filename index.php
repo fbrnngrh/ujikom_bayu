@@ -80,6 +80,49 @@
                     }
                 });
             </script>
+            <!-- Tampilkan form pencarian -->
+            <h2>Pencarian Perguruan Tinggi</h2>
+            <form method="GET">
+                <label for="search">Cari Perguruan Tinggi:</label>
+                <input type="text" id="search" name="search" placeholder="Masukkan Nama Perguruan Tinggi">
+                <input type="submit" value="Cari">
+            </form>
+
+            <!-- Tampilkan hasil pencarian -->
+            <?php
+            if (isset($_GET['search'])) {
+                $search = $_GET['search'];
+                $dataPerguruanTinggi = searchPerguruanTinggi($search);
+
+                if (empty($dataPerguruanTinggi)) {
+                    echo "<p>Tidak ditemukan hasil untuk kata kunci pencarian '$search'.</p>";
+                } else {
+                    echo "<h2>Hasil Pencarian</h2>";
+                    echo "<table>";
+                    echo "<thead>";
+                    echo "<tr>";
+                    echo "<th>Nomer Induk Perguruan Tinggi</th>";
+                    echo "<th>Nama Perguruan Tinggi</th>";
+                    echo "<th>Nilai Akreditasi</th>";
+                    echo "<th>Peringkat Akreditasi</th>";
+                    echo "<th>Tanggal dan Jam Disimpan</th>";
+                    echo "</tr>";
+                    echo "</thead>";
+                    echo "<tbody>";
+                    foreach ($dataPerguruanTinggi as $perguruanTinggi) {
+                        echo "<tr>";
+                        echo "<td>{$perguruanTinggi['nomer_induk']}</td>";
+                        echo "<td>{$perguruanTinggi['nama']}</td>";
+                        echo "<td>{$perguruanTinggi['nilai_akreditasi']}</td>";
+                        echo "<td>{$perguruanTinggi['peringkat_akreditasi']}</td>";
+                        echo "<td>{$perguruanTinggi['tanggal_jam']}</td>";
+                        echo "</tr>";
+                    }
+                    echo "</tbody>";
+                    echo "</table>";
+                }
+            }
+            ?>
 
             <!-- Tampilkan data statistik peringkat akreditasi -->
             <h2>Statistik Perguruan Tinggi berdasarkan Peringkat Akreditasi</h2>
