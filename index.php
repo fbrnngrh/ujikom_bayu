@@ -1,24 +1,115 @@
-<?php
-require 'functions.php';
-
-$perguruanTinggiCount = count(getPerguruanTinggiFromFile());
-$nilaiAkreditasiCount = count(getNilaiAkreditasiFromFile());
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Manajemen Nilai Akhir Siswa</title>
+    <title>Beranda</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Selamat Datang di Aplikasi Manajemen Data Perguruan Tinggi</h1>
-    <p>Jumlah Perguruan Tinggi: <?php echo $perguruanTinggiCount ?></p>
-    <p>Jumlah Nilai Akreditasi: <?php echo $nilaiAkreditasiCount ?></p>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.php">Beranda</a></li>
+                <li><a href="kelola_perguruan_tinggi.php">Kelola Data Perguruan Tinggi</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Tambahkan tombol untuk menuju halaman kelola data siswa -->
-    <a href="kelola_PerguruanTinggi.php">Kelola Data Perguruan Tinggi</a>
-    <br>
-    <!-- Tambahkan tombol untuk menuju halaman kelola data nilai akhir -->
-    <a href="kelola_NilaiAkreditasi.php">Kelola Nilai Akreditasi</a>
+    <main>
+        <div class="container">
+            <h1>Selamat datang di Aplikasi Pengelolaan Data Akreditasi Perguruan Tinggi</h1>
+
+            <?php
+            include 'functions.php';
+
+            // Mendapatkan data statistik untuk chart
+            $dataPerguruanTinggi = getAllPerguruanTinggi();
+            $labels = array();
+            $nilaiAkreditasi = array();
+            $peringkatAkreditasiA = 0;
+            $peringkatAkreditasiB = 0;
+            $peringkatAkreditasiC = 0;
+            $peringkatTidakAkreditasi = 0;
+
+            foreach ($dataPerguruanTinggi as $perguruanTinggi) {
+                $labels[] = $perguruanTinggi['nama'];
+                $nilaiAkreditasi[] = $perguruanTinggi['nilai_akreditasi'];
+
+                $peringkat_akreditasi = $perguruanTinggi['peringkat_akreditasi'];
+                switch ($peringkat_akreditasi) {
+                    case 'A':
+                        $peringkatAkreditasiA++;
+                        break;
+                    case 'B':
+                        $peringkatAkreditasiB++;
+                        break;
+                    case 'C':
+                        $peringkatAkreditasiC++;
+                        break;
+                    default:
+                        $peringkatTidakAkreditasi++;
+                        break;
+                }
+            }
+            ?>
+
+            <!-- Tampilkan chart dengan data statistik -->
+            <h2>Statistik Perguruan Tinggi berdasarkan Nilai Akreditasi</h2>
+            <canvas id="chartPerguruanTinggi" width="800" height="400"></canvas>
+
+            <script>
+                var ctx = document.getElementById('chartPerguruanTinggi').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: <?php echo json_encode($labels); ?>,
+                        datasets: [{
+                            label: 'Nilai Akreditasi',
+                            data: <?php echo json_encode($nilaiAkreditasi); ?>,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            </script>
+
+            <!-- Tampilkan data statistik peringkat akreditasi -->
+            <h2>Statistik Perguruan Tinggi berdasarkan Peringkat Akreditasi</h2>
+            <table>
+                <tr>
+                    <th>Peringkat Akreditasi</th>
+                    <th>Jumlah Perguruan Tinggi</th>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td><?php echo $peringkatAkreditasiA; ?></td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td><?php echo $peringkatAkreditasiB; ?></td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td><?php echo $peringkatAkreditasiC; ?></td>
+                </tr>
+                <tr>
+                    <td>Tidak Terakreditasi</td>
+                    <td><?php echo $peringkatTidakAkreditasi; ?></td>
+                </tr>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <?php echo date('Y'); ?> Aplikasi Pengelolaan Data Akreditasi Perguruan Tinggi</p>
+    </footer>
 </body>
 </html>
